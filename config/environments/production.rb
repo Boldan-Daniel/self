@@ -77,8 +77,9 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-
   config.action_mailer.default_url_options = { host: Figaro.env.HOST_FOR_AM }
   config.action_mailer.asset_host = "http://#{Figaro.env.HOST_FOR_AM}"
   config.action_mailer.perform_deliveries = true
+
+  config.middleware.insert_before 0, "MailingExceptions"
 end
